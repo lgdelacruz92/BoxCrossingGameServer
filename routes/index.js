@@ -3,14 +3,15 @@ var router = express.Router();
 var firebase = require('../services/firebase');
 require("firebase/firestore");
 
+var db = firebase.firestore();
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
 router.get('/scores', function(req, res, next) {
-  var db = firebase.firestore();
-  db.collection("TestCollection")
+  db.collection("scores")
     .get()
     .then(function(querySnapshot) {
       var data = [];
@@ -23,5 +24,21 @@ router.get('/scores', function(req, res, next) {
         res.send(error);
     });
 });
+
+router.post('/setscore', function(req, res, next){
+  var name = req.query.name;
+  var score = req.query.score;
+
+  db.collection("scores")
+    .doc()
+    .set({ name, score })
+    .then(resp => {
+      res.send(`Successfully added { name: ${name}, score: ${score} } to score collection`);
+    })
+    .catch(err => {
+      res.send(`Error in adding { name: ${name}, score: ${score} } to score collection`);
+    });
+});
+
 
 module.exports = router;
