@@ -1,14 +1,15 @@
 var firebase = require('firebase');
+require('dotenv').config()
 
 const firebaseConfig = {
-    apiKey: "AIzaSyApT4emXSW57wjm-s2XuEU1bdvgsbzyzz4",
-    authDomain: "crossinggame-32e09.firebaseapp.com",
-    databaseURL: "https://crossinggame-32e09.firebaseio.com",
-    projectId: "crossinggame-32e09",
-    storageBucket: "crossinggame-32e09.appspot.com",
-    messagingSenderId: "367175243915",
-    appId: "1:367175243915:web:666f5bf1c81b749b8d1c8e",
-    measurementId: "G-0X17W1TJX0"
+    apiKey: process.env.API_KEY,
+    authDomain: process.env.AUTH_DOMAIN,
+    databaseURL: process.env.DATABASE_URL,
+    projectId: process.env.PROJECT_ID,
+    storageBucket: process.env.STORAGE_BUCKET,
+    messagingSenderId: process.env.MESSAGING_SENDER_ID,
+    appId: process.env.APP_ID,
+    measurementId: process.env.MEASUREMENT_ID
   };
 
 var app = firebase.initializeApp(firebaseConfig);
