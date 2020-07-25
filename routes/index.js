@@ -28,6 +28,7 @@ router.get('/scores', function(req, res, next) {
 router.post('/setscore', function(req, res, next){
   var name = req.body.name;
   var score = req.body.score;
+  console.log(req.body);
 
   db.collection("scores")
     .doc()
